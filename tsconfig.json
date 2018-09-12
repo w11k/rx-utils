@@ -1,0 +1,23 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "allowJs": false,
+    "declaration": true,
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitOnError": false,
+    "noImplicitAny": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "rootDirs": ["src"],
+    "target": "es5",
+    "outDir": "dist",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  }
+}
