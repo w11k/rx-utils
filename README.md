@@ -6,8 +6,9 @@
 
 # Sponsor
 
-[W11K](https://www.w11k.de/)
-[theCodeCampus](https://www.thecodecampus.de/)
+[W11K - The Web Engineers](https://www.w11k.de/)
+
+[theCodeCampus - Trainings for Angular and TypeScript](https://www.thecodecampus.de/)
 
 
 # API Documentation
