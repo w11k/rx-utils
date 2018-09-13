@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "license": "Apache-2.0",
   "main": "./dist/index.js",
-  "module": "./dist/es2015/index.js",
   "typings": "dist/index.d.ts",
+  "module": "./dist/es2015/index.js",
   "repository": "https://github.com/w11k/rx-utils",
   "files": [
     "dist",
