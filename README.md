@@ -4,6 +4,8 @@
 
 # rx-utils
 
+Utilities for RxJS
+
 # Sponsor
 
 [W11K - The Web Engineers](https://www.w11k.de/)
