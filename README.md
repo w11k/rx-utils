@@ -6,14 +6,13 @@
 
 Utilities for RxJS
 
-# Sponsor
+# ❤️ Patron ❤️
 
 [W11K - The Web Engineers](https://www.w11k.de/)
 
 [theCodeCampus - Trainings for Angular and TypeScript](https://www.thecodecampus.de/)
 
 
-# API Documentation
+# 🗄 API Documentation 🗄
 
-https://w11k.github.io/rx-utils/
-
+[TypeDoc online API documentation](https://w11k.github.io/rx-utils/modules/_index_.html)

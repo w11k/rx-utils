@@ -37,7 +37,7 @@
     "prepublishOnly": "npm test && npm run build",
     "postpublish": "npm run typedoc_deploy && git push",
     "test": "mocha --opts spec/mocha.opts src/**/*test.ts",
-    "typedoc": "typedoc --out doc/ src && echo \"no jekyll\" > doc/.nojekyll",
-    "typedoc_deploy": "npm run typedoc && gh-pages --dotfiles -d doc"
+    "typedoc": "typedoc --out doc/ src && echo \"\" > doc/.nojekyll",
+    "typedoc_deploy": "npm run typedoc && gh-pages -t --dotfiles -d doc"
   }
 }
