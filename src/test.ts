@@ -1,6 +1,8 @@
+import {assert} from "chai";
 import {of} from "rxjs";
 import {tap} from "rxjs/operators";
 import {
+    entries,
     skipNil,
     skipNull,
     skipPropertyNil,
@@ -12,22 +14,50 @@ import {
 
 describe("rx-utils", function () {
 
-    it("todo", function () {
+    it("entries", function () {
+        const obj = {
+            a: 1,
+            2: "b"
+        };
+
+        assert.notSameOrderedMembers(entries(obj), [
+            ["a", 1],
+            ["2", "b"],
+        ]);
+    });
+
+    it("skipNull, skipUndefined", function (done) {
         const testValue = "x" as string | undefined | null;
-
         const testValue$ = of(testValue);
-
         testValue$
-            .pipe(skipNull)
-            .pipe(skipUndefined)
-            .pipe(tap(x => x.charAt(0)))
-        ;
+            .pipe(
+                skipNull,
+                skipUndefined,
+                tap(x => x.charAt(0)) // compiler check
+            )
+            .subscribe(x => {
+                assert.equal(x, testValue);
+                done();
+            });
+    });
 
+    it("skipNil", function (done) {
+        const testValue = "x" as string | undefined | null;
+        const testValue$ = of(testValue);
         testValue$
-            .pipe(skipNil)
-            .pipe(tap(x => x.charAt(0)))
-        ;
+            .pipe(
+                skipNil,
+                tap(x => x.charAt(0)) // compiler check
+            )
+            .subscribe(x => {
+                assert.equal(x, testValue);
+                done();
+            });
+    });
 
+
+
+    it("todo", function () {
         const testObj = {
             a: "a" as string | null,
             b: "b" as string | undefined,
@@ -58,9 +88,3 @@ describe("rx-utils", function () {
     });
 
 });
-
-
-
-
-
-

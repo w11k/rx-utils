@@ -1,16 +1,16 @@
 import {combineLatest, Observable} from "rxjs";
 import {filter, map} from "rxjs/operators";
 
+export function entries<T>(obj: any): [string, T][] {
+    const ownProps = Object.keys(obj);
+    let i = ownProps.length;
+    const resArray = new Array(i);
 
-function entries<T>(o: { [s: string]: T } | ArrayLike<T>): [string, T][] {
-    const result: [string, T][] = [];
-    const keys = Object.keys(o);
-
-    for (let key of keys) {
-        result.push([key, (o as any)[key]]);
+    while (i--) {
+        resArray[i] = [ownProps[i], obj[ownProps[i]]];
     }
 
-    return result;
+    return resArray;
 }
 
 export function notNil<T>(x: T | null | undefined): x is T {
@@ -57,7 +57,7 @@ export function propertyNotNull<T, P extends keyof T>(property: P) {
 }
 
 export function propertiesNotUndefined<T>(obj: T): obj is { [P in keyof T]: NonUndefined<T[P]> } {
-    const hasUndefined = Object.entries(obj)
+    const hasUndefined = entries(obj)
         .some(x => x[1] === undefined);
 
     return !hasUndefined;
@@ -72,7 +72,7 @@ export function propertyNotUndefined<T, P extends keyof T>(property: P) {
 }
 
 export function propertiesNotNil<T>(obj: T): obj is { [P in keyof T]: NonNil<T[P]> } {
-    const hasNil = Object.entries(obj)
+    const hasNil = entries(obj)
         .some(x => x[1] === null || x[1] === undefined);
 
     return !hasNil;
