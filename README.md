@@ -8,9 +8,9 @@ Utilities for RxJS
 
 # Patron
 
-❤ [W11K - The Web Engineers](https://www.w11k.de/)
+❤️ [W11K - The Web Engineers](https://www.w11k.de/)
 
-❤ [theCodeCampus - Trainings for Angular and TypeScript](https://www.thecodecampus.de/)
+❤️ [theCodeCampus - Trainings for Angular and TypeScript](https://www.thecodecampus.de/)
 
 
 # API Documentation
