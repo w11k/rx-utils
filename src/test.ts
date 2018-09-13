@@ -26,12 +26,25 @@ describe("rx-utils", function () {
         ]);
     });
 
-    it("skipNull, skipUndefined", function (done) {
-        const testValue = "x" as string | undefined | null;
+    it("skipNull", function (done) {
+        const testValue = "x" as string | null;
         const testValue$ = of(testValue);
         testValue$
             .pipe(
                 skipNull,
+                tap(x => x.charAt(0)) // compiler check
+            )
+            .subscribe(x => {
+                assert.equal(x, testValue);
+                done();
+            });
+    });
+
+    it("skipUndefined", function (done) {
+        const testValue = "x" as string | undefined;
+        const testValue$ = of(testValue);
+        testValue$
+            .pipe(
                 skipUndefined,
                 tap(x => x.charAt(0)) // compiler check
             )
