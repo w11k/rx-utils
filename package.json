@@ -2,6 +2,8 @@
   "name": "@w11k/rx-utils",
   "version": "1.0.0",
   "license": "Apache-2.0",
+  "author": "W11K",
+  "homepage": "https://github.com/w11k/rx-utils",
   "main": "./dist/index.js",
   "typings": "dist/index.d.ts",
   "module": "./dist/es2015/index.js",
