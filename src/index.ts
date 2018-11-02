@@ -1,5 +1,5 @@
-import {combineLatest, Observable} from "rxjs";
-import {filter, map} from "rxjs/operators";
+import {combineLatest, Observable, of, timer} from "rxjs";
+import {filter, map, mapTo, pairwise, startWith, switchMap, take} from "rxjs/operators";
 
 export function entries<T>(obj: any): [string, T][] {
     const ownProps = Object.keys(obj);
@@ -136,4 +136,22 @@ export function combineLatestToMap<T>(obsMap: { [P in keyof T]: Observable<T[P]>
     }));
 }
 
+/**
+ * Debounces values on the stream if the predicate returns true.
+ */
+export const debounceIf =
+    <T>(debounceTimeInMs: number, predicate: (previous: T | undefined, last: T) => boolean) =>
+        (source: Observable<T>) => source.pipe(
+            startWith(undefined),
+            pairwise(),
+            switchMap(([prev, cur]) => {
+                if (predicate(prev, cur)) {
+                    return timer(debounceTimeInMs).pipe(
+                        mapTo(cur),
+                        take(1)
+                    );
+                }
 
+                return of(cur);
+            })
+        );

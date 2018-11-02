@@ -2,6 +2,7 @@ import {assert} from "chai";
 import {of} from "rxjs";
 import {tap} from "rxjs/operators";
 import {
+    debounceIf,
     entries,
     skipNil,
     skipNull,
@@ -69,7 +70,6 @@ describe("rx-utils", function () {
     });
 
 
-
     it("todo", function () {
         const testObj = {
             a: "a" as string | null,
@@ -98,6 +98,48 @@ describe("rx-utils", function () {
             .pipe(tap(x => x.c.charAt(0)))
             .pipe(tap(x => x.d.charAt(0)))
         ;
+    });
+
+});
+
+describe("debounceIf", function () {
+
+    it("does not debounce if the predicate returns false", function () {
+        const source = of(1, 2);
+        const values: any[] = [];
+        source.pipe(
+            debounceIf(1000, () => false)
+        ).subscribe(value => {
+            values.push(value);
+        });
+        assert.deepEqual(values, [1, 2]);
+    });
+
+    it("debounces if the predicate returns true", function (done) {
+        const source = of(1, 2);
+
+        let async = false;
+        let called = 0;
+        source.pipe(
+            debounceIf(0, (prev, cur) => {
+                if (called === 0) {
+                    assert.isUndefined(prev);
+                    assert.equal(cur, 1);
+                } else if (called === 1) {
+                    assert.equal(prev, 1);
+                    assert.equal(cur, 2);
+                }
+
+                called++;
+                return true;
+            })
+        ).subscribe(value => {
+            assert.isTrue(async);
+            assert.equal(called, 2);
+            assert.equal(value, 2);
+            done();
+        });
+        async = true;
     });
 
 });
