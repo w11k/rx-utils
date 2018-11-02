@@ -1,6 +1,6 @@
 {
   "name": "@w11k/rx-utils",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "Apache-2.0",
   "author": "W11K",
   "homepage": "https://github.com/w11k/rx-utils",
@@ -26,7 +26,7 @@
     "source-map-support": "0.5.3",
     "ts-node": "4.1.0",
     "tslint": "^5.9.1",
-    "typedoc": "^0.12.0",
+    "typedoc": "0.12.0",
     "typescript": "^2.7.1",
     "typings": "^2.1.1"
   },
