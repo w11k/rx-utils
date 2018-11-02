@@ -137,21 +137,23 @@ export function combineLatestToMap<T>(obsMap: { [P in keyof T]: Observable<T[P]>
 }
 
 /**
- * Debounces values on the stream if the predicate returns true.
+ * Debounce values on the stream if the predicate returns true.
  */
-export const debounceIf =
-    <T>(debounceTimeInMs: number, predicate: (previous: T | undefined, last: T) => boolean) =>
-        (source: Observable<T>) => source.pipe(
-            startWith(undefined),
-            pairwise(),
-            switchMap(([prev, cur]) => {
-                if (predicate(prev, cur)) {
-                    return timer(debounceTimeInMs).pipe(
-                        mapTo(cur),
-                        take(1)
-                    );
-                }
+export function debounceIf<T>(debounceTimeInMs: number,
+                              predicate: (previous: T | undefined, last: T) => boolean) {
 
-                return of(cur);
-            })
-        );
+    return (source: Observable<T>) => source.pipe(
+        startWith(undefined),
+        pairwise(),
+        switchMap(([prev, cur]) => {
+            if (predicate(prev, cur)) {
+                return timer(debounceTimeInMs).pipe(
+                    mapTo(cur),
+                    take(1)
+                );
+            }
+
+            return of(cur);
+        })
+    );
+}
