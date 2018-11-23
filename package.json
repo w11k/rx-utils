@@ -1,6 +1,6 @@
 {
   "name": "@w11k/rx-utils",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "license": "Apache-2.0",
   "author": "W11K",
   "homepage": "https://github.com/w11k/rx-utils",
@@ -27,7 +27,7 @@
     "ts-node": "4.1.0",
     "tslint": "^5.9.1",
     "typedoc": "0.12.0",
-    "typescript": "^2.7.1",
+    "typescript": "^3.1.6",
     "typings": "^2.1.1"
   },
   "peerDependencies": {
