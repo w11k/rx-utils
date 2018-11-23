@@ -1,5 +1,4 @@
-import {Observable, PartialObserver, Subject} from "rxjs";
-import {map} from "rxjs/operators";
+import {Observable, OperatorFunction, PartialObserver, Subject} from "rxjs";
 
 function identity<T>(obj: T): T {
     return obj;
@@ -36,16 +35,17 @@ function delegateAllProperties(target: any, source: any) {
 
 export type CallableSubject<I, O> = ((value: I) => void) & Observable<O> & PartialObserver<I>;
 
-export function createCallableSubject<I>(): CallableSubject<I, I>;
-export function createCallableSubject<I, O>(base: Subject<I>): CallableSubject<I, I>;
-export function createCallableSubject<I, O>(base: Subject<I>, transform?: (value: I) => O): CallableSubject<I, O>;
+// export function createCallableSubject<I>(): CallableSubject<I, I>;
+// export function createCallableSubject<I, O>(base: Subject<I>): CallableSubject<I, I>;
+// export function createCallableSubject<I, O>(base: Subject<I>, transform?: (value: I) => O): CallableSubject<I, O>;
+
 export function createCallableSubject<I, O>(subject: Subject<I> = new Subject(),
-                                            transform: (value: I) => O = identity as any): CallableSubject<I, O> {
+                                            operator: OperatorFunction<I, O> = identity as any): CallableSubject<I, O> {
     const callable = (value: I) => {
         subject.next(value);
     };
 
-    const observable: Observable<O> = subject.asObservable().pipe(map(transform));
+    const observable: Observable<O> = subject.asObservable().pipe(operator);
     delegateAllProperties(callable, subject);
     delegateAllProperties(callable, observable);
 

@@ -1,5 +1,6 @@
 import * as assert from "assert";
 import {ReplaySubject, Subject} from "rxjs";
+import {map} from "rxjs/operators";
 import {createCallableSubject} from "./CallableSubject";
 
 describe("CallableSubject", function () {
@@ -23,9 +24,9 @@ describe("CallableSubject", function () {
     });
 
     it("the output stream can be transformed", function () {
-        const cs = createCallableSubject(new Subject<number>(), i => "-" + i);
+        const cs = createCallableSubject(new Subject<number>(), ($) => $.pipe(map(v => "-" + v)));
         const values: any[] = [];
-        cs.subscribe(val => values.push(val));
+        cs.subscribe((val: string) => values.push(val));
         cs(1);
         cs(2);
         assert.deepStrictEqual(values, ["-1", "-2"]);
