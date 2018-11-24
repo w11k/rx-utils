@@ -1,5 +1,4 @@
-import {Observable, OperatorFunction, PartialObserver, Subject} from "rxjs";
-import {createTransformingSubject} from "./TransformingSubject";
+import {Observable, Observer, OperatorFunction, Subject} from "rxjs";
 
 function identity<T>(obj: T): T {
     return obj;
@@ -34,7 +33,7 @@ function delegateAllProperties(target: any, source: any) {
     }
 }
 
-export type CallableSubject<I, O> = ((value: I) => void) & Observable<O> & PartialObserver<I>;
+export type CallableSubject<I, O> = ((value: I) => void) & Observable<O> & Observer<I>;
 
 export function createCallableSubject<I>(): CallableSubject<I, I>;
 export function createCallableSubject<I, O>(base: Subject<I>): CallableSubject<I, I>;
@@ -43,21 +42,24 @@ export function createCallableSubject<I, O>(base: Subject<I>, operator: Operator
 export function createCallableSubject<I, O>(subject: Subject<I> = new Subject(),
                                             operator: OperatorFunction<I, O> = identity as any): CallableSubject<I, O> {
 
-    let transformingSubject = createTransformingSubject(subject, operator);
-
     const callable = (value: I) => {
         subject.next(value);
     };
 
+    const observable: Observable<O> = subject.asObservable().pipe(operator);
     const fnMethods: Partial<Function> = {
-        apply: callable.apply.bind(callable),
         bind: callable.bind.bind(callable),
+        apply: callable.apply.bind(callable),
         call: callable.call.bind(callable),
         length: callable.length,
         name: callable.name
     };
-    delegateAllProperties(callable, transformingSubject);
     delegateAllProperties(callable, fnMethods);
+    delegateAllProperties(callable, subject);
+    delegateAllProperties(callable, observable);
+
+    // Required! Otherwise this CallableSubject could not be used with e.g. `takeUntil()`
+    Object.setPrototypeOf(callable, observable);
 
     return callable as any;
 }

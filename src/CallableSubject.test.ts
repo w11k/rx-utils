@@ -36,8 +36,11 @@ describe("CallableSubject", function () {
         const cs = createCallableSubject<number>();
         const values: any[] = [];
         cs.subscribe((val: number) => values.push(val));
+        cs(0);
         cs.call(undefined, 1);
-        assert.deepStrictEqual(values, [1]);
+        cs.apply(undefined, [2]);
+        cs.next(3);
+        assert.deepStrictEqual(values, [0, 1, 2, 3]);
     });
 
     it("can be used as a parameter to takeUntil()", function () {
