@@ -1,4 +1,9 @@
 
+# Version 1.2.2
+
+- fixed: CallableSubject, function's prototype methods were not preserved
+
+
 # Version 1.2.0
 
 - added CallableSubject

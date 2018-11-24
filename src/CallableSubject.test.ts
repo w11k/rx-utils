@@ -32,4 +32,12 @@ describe("CallableSubject", function () {
         assert.deepStrictEqual(values, ["-1", "-2"]);
     });
 
+    it("the function methods can be used", function () {
+        const cs = createCallableSubject<number>();
+        const values: any[] = [];
+        cs.subscribe((val: number) => values.push(val));
+        cs.call(undefined, 1);
+        assert.deepStrictEqual(values, [1]);
+    });
+
 });
