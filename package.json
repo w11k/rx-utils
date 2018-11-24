@@ -37,7 +37,7 @@
     "clean": "del-cli dist",
     "build": "npm run clean ; tsc -p tsconfig.json && tsc -p tsconfig.dist.es2015.json",
     "prepublishOnly": "npm test && npm run build",
-    "postpublish": "npm run typedoc_deploy && git push",
+    "postpublish": "npm run typedoc_deploy && git add . && git commit -m 'generated typedoc' && git push",
     "test": "mocha --opts spec/mocha.opts src/**/*test.ts",
     "typedoc": "typedoc --out doc/ src && echo \"\" > doc/.nojekyll",
     "typedoc_deploy": "npm run typedoc && gh-pages -t --dotfiles -d doc"
