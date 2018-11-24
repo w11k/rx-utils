@@ -1,4 +1,5 @@
 import {Observable, OperatorFunction, PartialObserver, Subject} from "rxjs";
+import {createTransformingSubject} from "./TransformingSubject";
 
 function identity<T>(obj: T): T {
     return obj;
@@ -41,11 +42,13 @@ export function createCallableSubject<I, O>(base: Subject<I>, operator: Operator
 
 export function createCallableSubject<I, O>(subject: Subject<I> = new Subject(),
                                             operator: OperatorFunction<I, O> = identity as any): CallableSubject<I, O> {
+
+    let transformingSubject = createTransformingSubject(subject, operator);
+
     const callable = (value: I) => {
         subject.next(value);
     };
 
-    const observable: Observable<O> = subject.asObservable().pipe(operator);
     const fnMethods: Partial<Function> = {
         apply: callable.apply.bind(callable),
         bind: callable.bind.bind(callable),
@@ -53,12 +56,8 @@ export function createCallableSubject<I, O>(subject: Subject<I> = new Subject(),
         length: callable.length,
         name: callable.name
     };
-    delegateAllProperties(callable, subject);
-    delegateAllProperties(callable, observable);
+    delegateAllProperties(callable, transformingSubject);
     delegateAllProperties(callable, fnMethods);
-
-    // Required! Otherwise this CallableSubject could not be used with e.g. `takeUntil()`
-    Object.setPrototypeOf(callable, observable);
 
     return callable as any;
 }

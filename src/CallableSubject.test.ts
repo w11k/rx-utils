@@ -1,6 +1,6 @@
 import * as assert from "assert";
 import {ReplaySubject, Subject} from "rxjs";
-import {map} from "rxjs/operators";
+import {map, takeUntil} from "rxjs/operators";
 import {createCallableSubject} from "./CallableSubject";
 
 describe("CallableSubject", function () {
@@ -38,6 +38,25 @@ describe("CallableSubject", function () {
         cs.subscribe((val: number) => values.push(val));
         cs.call(undefined, 1);
         assert.deepStrictEqual(values, [1]);
+    });
+
+    it("can be used as a parameter to takeUntil()", function () {
+        const stop = createCallableSubject<true>();
+
+        const subject = new Subject<number>();
+        const values: any[] = [];
+        subject.pipe(
+            takeUntil(stop)
+        ).subscribe(
+            (val: number) => values.push(val)
+        );
+        subject.next(1);
+        subject.next(2);
+        stop(true);
+        subject.next(3);
+
+
+        assert.deepStrictEqual(values, [1, 2]);
     });
 
 });

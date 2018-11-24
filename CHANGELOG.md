@@ -1,4 +1,9 @@
 
+# Version 1.3.0
+
+- added TransformingSubject
+
+
 # Version 1.2.2
 
 - fixed: CallableSubject, function's prototype methods were not preserved
