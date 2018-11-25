@@ -1,6 +1,6 @@
 {
   "name": "@w11k/rx-utils",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "license": "Apache-2.0",
   "author": "W11K",
   "homepage": "https://github.com/w11k/rx-utils",
@@ -13,10 +13,9 @@
     "LICENSE",
     "README.md"
   ],
-  "dependencies": {
-    "rxjs": "^6.0.0"
-  },
   "devDependencies": {
+    "rxjs": "^6.3.3",
+    "@phenomnomnominal/tsquery": "^3.0.0",
     "@types/chai": "4.1.2",
     "@types/mocha": "2.2.48",
     "chai": "4.1.2",
@@ -31,15 +30,18 @@
     "typings": "^2.1.1"
   },
   "peerDependencies": {
-    "rxjs": "^6.0.0"
+    "rxjs": ">=6.0.0"
   },
   "scripts": {
     "clean": "del-cli dist",
     "build": "npm run clean ; tsc -p tsconfig.json && tsc -p tsconfig.dist.es2015.json",
-    "prepublishOnly": "npm test && npm run build",
-    "postpublish": "npm run typedoc_deploy && git add . && git commit -m 'generated typedoc' && git push",
+    "prepublishOnly": "npm test && npm run build && npm run typedoc",
+    "postpublish": "npm run typedoc_deploy && git push",
     "test": "mocha --opts spec/mocha.opts src/**/*test.ts",
-    "typedoc": "typedoc --out doc/ src && echo \"\" > doc/.nojekyll",
-    "typedoc_deploy": "npm run typedoc && gh-pages -t --dotfiles -d doc"
+    "test_tslint_prepare": "npm run clean && tsc",
+    "test_tslint_subscribe_takeuntil": "tslint -p tsconfig.json -c src/tslint_rules/subscribe-takeuntil/rule.json src/tslint_rules/subscribe-takeuntil/*.ts",
+    "test_tslint": "npm run test_tslint_prepare && npm run test_tslint_subscribe_takeuntil",
+    "typedoc": "typedoc --out doc/ src && echo \"\" > doc/.nojekyll && git add . && git commit -m 'generated typedoc'",
+    "typedoc_deploy": "gh-pages -t --dotfiles -d doc"
   }
 }

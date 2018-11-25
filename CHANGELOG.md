@@ -1,4 +1,9 @@
 
+# Version 1.4.0
+
+- added TSLint rule: w11k-rxjs-subscribe-takeuntil
+
+
 # Version 1.3.1
 
 - fixed CallableSubject
