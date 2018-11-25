@@ -1,4 +1,9 @@
 
+# Version 1.4.1
+
+- w11k-rxjs-subscribe-takeuntil triggers now also triggers outside classes
+
+
 # Version 1.4.0
 
 - added TSLint rule: w11k-rxjs-subscribe-takeuntil

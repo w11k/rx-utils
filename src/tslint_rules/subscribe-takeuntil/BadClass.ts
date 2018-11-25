@@ -1,9 +1,21 @@
-import {of} from "rxjs";
+import {NEVER, of} from "rxjs";
 import {map, takeUntil} from "rxjs/operators";
 
 class SomeClass {
     subscribe() {
     }
+}
+
+// Error
+of(1).pipe(map(i => i)).subscribe();
+
+// Ok
+// tslint:disable-next-line:w11k-rxjs-subscribe-takeuntil
+of(1).pipe(map(i => i)).subscribe();
+
+function test() {
+    // Error
+    of(1).pipe(map(i => i)).subscribe();
 }
 
 declare const scoped: any;
@@ -39,6 +51,12 @@ class BadClass {
         this.observable.pipe(
             map(i => i),
             takeUntil(this.stop),
+        ).subscribe();
+
+        // OK
+        this.observable.pipe(
+            map(i => i),
+            takeUntil(NEVER),
         ).subscribe();
 
         // OK

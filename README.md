@@ -17,14 +17,16 @@ Utilities for RxJS
 
 🗄 [TypeDoc online API documentation](https://w11k.github.io/rx-utils/modules/_index_.html)
 
+Operator|Description
+--|--
+debounceIf|Debounce values on the stream if the predicate returns true
+
 
 ## TSLint rule
 
 ### w11k-rxjs-subscribe-takeuntil
 
-This rule triggers if `Observable#subscribe()` is called inside a class
-
-and then enforces that 
+This rule triggers if `Observable#subscribe()` is called and then enforces that 
 
 - `.pipe()` is called directly before `.subscribe()`
 - and that `takeUntil()` is called as the last pipe operator

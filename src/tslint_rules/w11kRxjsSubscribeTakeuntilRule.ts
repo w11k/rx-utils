@@ -1,4 +1,3 @@
-import {tsquery} from "@phenomnomnominal/tsquery";
 import * as Lint from "tslint";
 import * as ts from "typescript";
 import {getObservableSubscribeExpression, hasLiftScopedBeforeSubscribe, hasPipeTakeUntilBeforeSubscribe} from "./util";
@@ -19,26 +18,26 @@ export class Rule extends Lint.Rules.TypedRule {
 
     applyWithProgram(sourceFile: ts.SourceFile, program: ts.Program): Lint.RuleFailure[] {
         const failures: Lint.RuleFailure[] = [];
-        let relevantClasses: ts.Node[] = tsquery(sourceFile, "ClassDeclaration");
+        // let relevantClasses: ts.Node[] = tsquery(sourceFile, "ClassDeclaration");
 
-        relevantClasses.forEach(classDeclaration => {
-            const subscribeExpression = getObservableSubscribeExpression(classDeclaration, program);
-            subscribeExpression.forEach(node => {
+        // relevantClasses.forEach(classDeclaration => {
+        const subscribeExpression = getObservableSubscribeExpression(sourceFile, program);
+        subscribeExpression.forEach(node => {
 
-                let isSafe = hasPipeTakeUntilBeforeSubscribe(node) || hasLiftScopedBeforeSubscribe(node);
-                if (!isSafe) {
-                    const propertyAccessExpression = node as ts.PropertyAccessExpression;
-                    const {name} = propertyAccessExpression;
-                    failures.push(new Lint.RuleFailure(
-                        sourceFile,
-                        name.getStart(),
-                        name.getStart() + name.getWidth(),
-                        "Missing `.pipe(..., takeUntil(...))` before .subscribe()",
-                        this.ruleName
-                    ));
-                }
-            });
+            let isSafe = hasPipeTakeUntilBeforeSubscribe(node) || hasLiftScopedBeforeSubscribe(node);
+            if (!isSafe) {
+                const propertyAccessExpression = node as ts.PropertyAccessExpression;
+                const {name} = propertyAccessExpression;
+                failures.push(new Lint.RuleFailure(
+                    sourceFile,
+                    name.getStart(),
+                    name.getStart() + name.getWidth(),
+                    "Missing `.pipe(..., takeUntil(...))` before .subscribe()",
+                    this.ruleName
+                ));
+            }
         });
+        // });
         return failures;
     }
 }
