@@ -6,13 +6,47 @@
 
 Utilities for RxJS
 
-# Patron
+*+Patrons**
 
 ❤️ [W11K - The Web Engineers](https://www.w11k.de/)
 
 ❤️ [theCodeCampus - Trainings for Angular and TypeScript](https://www.thecodecampus.de/)
 
 
-# API Documentation
+## API Documentation
 
 🗄 [TypeDoc online API documentation](https://w11k.github.io/rx-utils/modules/_index_.html)
+
+
+## TSLint rule
+
+**w11k-rxjs-subscribe-takeuntil**
+
+This rule triggers if `Observable#subscribe()` is called inside a class
+
+and then enforces that 
+
+- `.pipe()` is called directly before `.subscribe()`
+- and that `takeUntil()` is called as the last pipe operator
+
+
+### Installation 
+
+**Adjust your tslint.json**
+
+```
+{
+  "rulesDirectory": [
+    "node_modules/@w11k/rx-utils/dist/tslint_rules"
+  ],
+  "rules": {
+    "w11k-rxjs-subscribe-takeuntil": true
+  }
+}
+```
+
+**Run tslint with type info**
+
+```
+tslint -p tsconfig.json
+```
