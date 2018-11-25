@@ -6,7 +6,7 @@
 
 Utilities for RxJS
 
-*+Patrons**
+**Patrons**
 
 ❤️ [W11K - The Web Engineers](https://www.w11k.de/)
 
