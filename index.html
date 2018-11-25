@@ -68,11 +68,41 @@
 				<a href="https://badge.fury.io/js/%40w11k%2Frx-utils"><img src="https://badge.fury.io/js/%40w11k%2Frx-utils.svg" alt="npm version"></a></p>
 				<h1 id="rx-utils">rx-utils</h1>
 				<p>Utilities for RxJS</p>
-				<h1 id="patron">Patron</h1>
+				<p><strong>Patrons</strong></p>
 				<p>❤️ <a href="https://www.w11k.de/">W11K - The Web Engineers</a></p>
 				<p>❤️ <a href="https://www.thecodecampus.de/">theCodeCampus - Trainings for Angular and TypeScript</a></p>
-				<h1 id="api-documentation">API Documentation</h1>
+				<h2 id="api-documentation">API Documentation</h2>
 				<p>🗄 <a href="https://w11k.github.io/rx-utils/modules/_index_.html">TypeDoc online API documentation</a></p>
+				<table>
+					<thead>
+						<tr>
+							<th>Operator</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>debounceIf</td>
+							<td>Debounce values on the stream if the predicate returns true</td>
+						</tr>
+				</tbody></table>
+				<h2 id="tslint-rule">TSLint rule</h2>
+				<h3 id="w11k-rxjs-subscribe-takeuntil">w11k-rxjs-subscribe-takeuntil</h3>
+				<p>This rule triggers if <code>Observable#subscribe()</code> is called and then enforces that </p>
+				<ul>
+					<li><code>.pipe()</code> is called directly before <code>.subscribe()</code></li>
+					<li>and that <code>takeUntil()</code> is called as the last pipe operator</li>
+				</ul>
+				<h4 id="installation">Installation</h4>
+				<p><strong>Adjust your tslint.json</strong></p>
+				<pre><code>{
+  <span class="hljs-attr">"rulesDirectory"</span>: [
+    <span class="hljs-string">"node_modules/@w11k/rx-utils/dist/tslint_rules"</span>
+  ],
+  <span class="hljs-attr">"rules"</span>: {
+    <span class="hljs-attr">"w11k-rxjs-subscribe-takeuntil"</span>: <span class="hljs-literal">true</span>
+  }
+}</code></pre><p><strong>Run tslint with type info</strong></p>
+				<pre><code>tslint -<span class="hljs-selector-tag">p</span> tsconfig.json</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
