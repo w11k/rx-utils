@@ -20,7 +20,7 @@ Utilities for RxJS
 
 ## TSLint rule
 
-**w11k-rxjs-subscribe-takeuntil**
+### w11k-rxjs-subscribe-takeuntil
 
 This rule triggers if `Observable#subscribe()` is called inside a class
 
@@ -30,7 +30,7 @@ and then enforces that
 - and that `takeUntil()` is called as the last pipe operator
 
 
-### Installation 
+#### Installation 
 
 **Adjust your tslint.json**
 
