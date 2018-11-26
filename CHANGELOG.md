@@ -1,4 +1,10 @@
 
+# Version 1.4.3
+
+- added error on use of deprecated method untilComponentDestroyed 
+- added missing dependency @phenomnomnominal/tsquery
+
+
 # Version 1.4.1
 
 - w11k-rxjs-subscribe-takeuntil triggers now also triggers outside classes
