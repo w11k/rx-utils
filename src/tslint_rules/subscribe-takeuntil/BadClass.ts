@@ -19,6 +19,7 @@ function test() {
 }
 
 declare const scoped: any;
+declare const untilComponentDestroyed: any;
 
 class BadClass {
 
@@ -44,8 +45,11 @@ class BadClass {
         // Error
         this.observable.subscribe();
 
-        // OK
+        // Error
         this.observable.lift(scoped()).subscribe();
+
+        // OK
+        this.observable.pipe(untilComponentDestroyed()).subscribe();
 
         // OK
         this.observable.pipe(

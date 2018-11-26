@@ -50,5 +50,5 @@ This rule triggers if `Observable#subscribe()` is called and then enforces that
 **Run tslint with type info**
 
 ```
-tslint -p tsconfig.json
+tslint -p tsconfig.json -t verbose
 ```
