@@ -28,7 +28,7 @@ class BadClass {
 
     constructor() {
         // Error
-        this.observable.pipe(
+        of(1).pipe(
             map(i => i),
             takeUntil(this.stop),
             map(i => i),

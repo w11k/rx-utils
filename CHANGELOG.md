@@ -1,4 +1,9 @@
 
+# Version 1.5.0
+
+- added tslint rule w11k-rxjs-subscribe-in-subscribe
+
+
 # Version 1.4.3
 
 - added error on use of deprecated method untilComponentDestroyed 
