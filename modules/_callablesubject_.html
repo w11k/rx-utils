@@ -80,6 +80,7 @@
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_callablesubject_.html#createcallablesubject" class="tsd-kind-icon">create<wbr>Callable<wbr>Subject</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_callablesubject_.html#createsignalsubject" class="tsd-kind-icon">create<wbr>Signal<wbr>Subject</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_callablesubject_.html#delegateallproperties" class="tsd-kind-icon">delegate<wbr>All<wbr>Properties</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter tsd-is-not-exported"><a href="_callablesubject_.html#identity" class="tsd-kind-icon">identity</a></li>
 							</ul>
@@ -92,10 +93,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
 					<a name="callablesubject" class="tsd-anchor"></a>
 					<h3>Callable<wbr>Subject</h3>
-					<div class="tsd-signature tsd-kind-icon">Callable<wbr>Subject<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">O</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Observer</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Callable<wbr>Subject<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CallableSubject&lt;I, O&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/729f28e/src/CallableSubject.ts#L36">CallableSubject.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/f5b3118/src/CallableSubject.ts#L36">CallableSubject.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -114,7 +115,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/729f28e/src/CallableSubject.ts#L38">CallableSubject.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/f5b3118/src/CallableSubject.ts#L40">CallableSubject.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -128,7 +129,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/729f28e/src/CallableSubject.ts#L39">CallableSubject.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/f5b3118/src/CallableSubject.ts#L41">CallableSubject.ts:41</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -151,7 +152,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/729f28e/src/CallableSubject.ts#L40">CallableSubject.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/f5b3118/src/CallableSubject.ts#L42">CallableSubject.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -176,6 +177,28 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="createsignalsubject" class="tsd-anchor"></a>
+					<h3>create<wbr>Signal<wbr>Subject</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Signal<wbr>Subject<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Observer</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/f5b3118/src/CallableSubject.ts#L69">CallableSubject.ts:69</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">function</span>
+								<span class="tsd-signature-symbol"> &amp; </span>
+								<span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span>
+								<span class="tsd-signature-symbol"> &amp; </span>
+								<span class="tsd-signature-type">Observer</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span>
+							</h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
 					<a name="delegateallproperties" class="tsd-anchor"></a>
 					<h3>delegate<wbr>All<wbr>Properties</h3>
@@ -186,7 +209,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/729f28e/src/CallableSubject.ts#L7">CallableSubject.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/f5b3118/src/CallableSubject.ts#L7">CallableSubject.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -212,7 +235,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/729f28e/src/CallableSubject.ts#L3">CallableSubject.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/w11k/rx-utils/blob/f5b3118/src/CallableSubject.ts#L3">CallableSubject.ts:3</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -261,6 +284,12 @@
 						<a href="_index_.html">"index"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="_maptovalueandchangedproperties_.html">"map<wbr>ToValue<wbr>And<wbr>Changed<wbr>Properties"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_maptovalueandchangedproperties_test_.html">"map<wbr>ToValue<wbr>And<wbr>Changed<wbr>Properties.test"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="_tslint_rules_subscribe_in_subscribe_badcode_.html">"tslint_<wbr>rules/subscribe-<wbr>in-<wbr>subscribe/bad<wbr>Code"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -284,6 +313,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
 						<a href="_callablesubject_.html#createcallablesubject" class="tsd-kind-icon">create<wbr>Callable<wbr>Subject</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_callablesubject_.html#createsignalsubject" class="tsd-kind-icon">create<wbr>Signal<wbr>Subject</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="_callablesubject_.html#delegateallproperties" class="tsd-kind-icon">delegate<wbr>All<wbr>Properties</a>
