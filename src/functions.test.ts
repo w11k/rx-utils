@@ -1,9 +1,10 @@
 import {assert} from "chai";
-import {of} from "rxjs";
+import {of, Subject} from "rxjs";
 import {tap} from "rxjs/operators";
 import {
     debounceIf,
     entries,
+    replayOn,
     skipNil,
     skipNull,
     skipPropertyNil,
@@ -140,6 +141,41 @@ describe("debounceIf", function () {
             done();
         });
         async = true;
+    });
+
+});
+
+describe("replayOn", function () {
+
+    it("passes values", function () {
+        const source = of(1, 2);
+        const trigger = new Subject();
+        const values: any[] = [];
+        source.pipe(
+            replayOn(trigger)
+        ).subscribe(value => {
+            values.push(value);
+        });
+        assert.deepEqual(values, [1, 2]);
+    });
+
+    it("replays last value on signal", function () {
+        const source = new Subject<number>();
+        const trigger = new Subject();
+        const values: any[] = [];
+        source.pipe(
+            replayOn(trigger)
+        ).subscribe(value => {
+            values.push(value);
+        });
+
+        source.next(1);
+        source.next(2);
+        trigger.next();
+        source.next(3);
+        trigger.next();
+
+        assert.deepEqual(values, [1, 2, 2, 3, 3]);
     });
 
 });

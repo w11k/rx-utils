@@ -1,4 +1,10 @@
 
+# Version 1.6.0
+
+- added SignalSubject
+- added operator replayOn
+
+
 # Version 1.5.0
 
 - added tslint rule w11k-rxjs-subscribe-in-subscribe

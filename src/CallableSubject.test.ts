@@ -1,12 +1,20 @@
 import * as assert from "assert";
 import {ReplaySubject, Subject} from "rxjs";
 import {map, takeUntil} from "rxjs/operators";
-import {createCallableSubject} from "./CallableSubject";
+import {createCallableSubject, createSignalSubject} from "./CallableSubject";
 
 describe("CallableSubject", function () {
 
+    it("must be called without arguments when undefined was specified as type parameter", function () {
+        const cs = createSignalSubject();
+        const values: any[] = [];
+        cs.subscribe(val => values.push(val));
+        cs();
+        assert.deepStrictEqual(values, [undefined]);
+    });
+
     it("should use a Subject internally when created with no arguments", function () {
-        const cs = createCallableSubject();
+        const cs = createCallableSubject<number>();
         cs(1);
         const values: any[] = [];
         cs.subscribe(val => values.push(val));
